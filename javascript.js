@@ -46,17 +46,37 @@ function playRound(){
     }
     if (humanWin == true && computerWin == true){
         console.log("Tie!")
+        result = "tie"
     }
     else if (humanWin == true){
         console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
-        humanScore += 1
+        result = "human"
     }
     else{
         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
-        computerScore += 1
+        result = "computer"
     }
+    return result
 }
 
-let humanScore, computerScore = 0;
+function playGame(){
+    let humanScore= 0;
+    let computerScore = 0;
+    let winner = ""
+    for (i=0; i<5; i++){
+        winner = playRound(humanScore, computerScore)
+        if (winner == "human") {
+            humanScore += 1
+        }
+        else if (winner == "computer"){
+            computerScore += 1
+        }
+    }
+    let whoWon = humanScore > computerScore ? "Human Wins!" : humanScore == computerScore ? "Tie" : "Computer Wins!"
+    console.log(whoWon)
+    console.log(humanScore)
+    console.log(computerScore)
+}
 
-playRound()
+
+playGame()
