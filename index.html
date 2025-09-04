@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    table, th, td {
+    border:1px solid black;
+    }
+    table{
+        width: 75%;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +18,16 @@
     <button id="btn">Scissors</button>
     <button id="btn">Paper</button>
     <div id="resultDiv"></div>
+    <table>
+        <tr>
+            <td>Your score</td>
+            <td>Computer score</td>
+        </tr>
+        <tr>
+            <td id="humanScr">0</td>
+            <td id="computerScr">0</td>
+        </tr>
+    </table>
     <script src="javascript.js">
     </script>
 </body>

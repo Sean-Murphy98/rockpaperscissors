@@ -1,13 +1,6 @@
 function getComputerChoice(){
     let randN = Math.ceil(Math.random()*3);
     let choice = randN == 1 ? "Rock" : randN==2 ? "Paper" : "Scissors"
-    console.log(choice)
-    return choice
-}
-
-function getHumanChoice(){
-    let choice = prompt("What do you choose?")
-    console.log(choice)
     return choice
 }
 
@@ -47,17 +40,18 @@ function playRound(humanChoice){
     let resultDiv = document.querySelector("#resultDiv");
     if (humanWin == true && computerWin == true){
         resultDiv.textContent = "Tie!"
-        result = "tie"
     }
     else if (humanWin == true){
+        let humanScr = document.querySelector("#humanScr");
         resultDiv.textContent = `You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`
-        result = "human"
+        humanScr.textContent =  parseInt(humanScr.innerText) + 1
     }
     else{
+        let compScr = document.querySelector("#computerScr");
         resultDiv.textContent = `You lose! ${computerChoice} beats ${humanChoice.toLowerCase()}.`
-        result = "computer"
+        compScr.textContent =  parseInt(compScr.innerText) + 1
     }
-    return result
+    return
 }
 
 function playGame(){
