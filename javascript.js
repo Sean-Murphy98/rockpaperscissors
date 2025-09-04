@@ -4,6 +4,18 @@ function getComputerChoice(){
     return choice
 }
 
+function checkWin(humanScr, compScr){
+    if (humanScr == 5){
+        alert("You win! First to Five!")
+        return true
+    }
+    else if (compScr == 5){
+        alert("Computer wins :(")
+        return true
+    }
+    return false
+}
+
 function playRound(humanChoice){
     let computerChoice = getComputerChoice();
     let humanWin = true;
@@ -38,27 +50,31 @@ function playRound(humanChoice){
         return
     }
     let resultDiv = document.querySelector("#resultDiv");
+    let humanScrDom = document.querySelector("#humanScr");
+    let humanScr = parseInt(humanScrDom.innerText)
+    let compScrDom = document.querySelector("#computerScr");
+    let compScr = parseInt(compScrDom.innerText)
     if (humanWin == true && computerWin == true){
         resultDiv.textContent = "Tie!"
     }
     else if (humanWin == true){
-        let humanScr = document.querySelector("#humanScr");
         resultDiv.textContent = `You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`
-        humanScr.textContent =  parseInt(humanScr.innerText) + 1
+        humanScrDom.textContent =  ++humanScr
     }
     else{
-        let compScr = document.querySelector("#computerScr");
         resultDiv.textContent = `You lose! ${computerChoice} beats ${humanChoice.toLowerCase()}.`
-        compScr.textContent =  parseInt(compScr.innerText) + 1
+        compScrDom.textContent =  ++compScr
+    }
+    let winner = checkWin(humanScr, compScr)
+    if (winner) {
+        humanScrDom.textContent = 0;
+        compScrDom.textContent = 0;
     }
     return
 }
 
-function playGame(){
-    let humanScore= 0;
-    let computerScore = 0;
-    let winner = ""
-    // buttons is a node list. It looks and acts much like an array.
+window.onload = (event) =>{
+        // buttons is a node list. It looks and acts much like an array.
     const buttons = document.querySelectorAll("button");
 
     // we use the .forEach method to iterate through each button
@@ -68,36 +84,4 @@ function playGame(){
         playRound(button.innerText);
     });
     });
-    /*
-    for (i=0; i<5; i++){
-        winner = playRound(humanScore, computerScore)
-        if (winner == "human") {
-            humanScore += 1
-        }
-        else if (winner == "computer"){
-            computerScore += 1
-        }
-    }
-    let whoWon = humanScore > computerScore ? "Human Wins!" : humanScore == computerScore ? "Tie" : "Computer Wins!"
-    console.log(whoWon)
-    console.log(humanScore)
-    console.log(computerScore)*/
-}
-/*
-const btnRock = document.querySelector("#btnRock");
-console.log(btnRock.innerText)
-btnRock.addEventListener("click", () => {
-  playRound("rock");
-});
-const btnScissors = document.querySelector("#btnScissors");
-btnRock.addEventListener("click", () => {
-  playRound("scissors");
-});
-const btnPaper = document.querySelector("#btnPaper");
-btnRock.addEventListener("click", () => {
-  playRound("rock");
-});
-*/
-window.onload = (event) =>{
-    playGame()
 }
