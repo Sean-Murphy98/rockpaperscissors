@@ -11,8 +11,7 @@ function getHumanChoice(){
     return choice
 }
 
-function playRound(){
-    let humanChoice = getHumanChoice().toLowerCase();
+function playRound(humanChoice){
     let computerChoice = getComputerChoice();
     let humanWin = true;
     let computerWin = true;
@@ -40,12 +39,14 @@ function playRound(){
             humanWin = false
         }
     }
+
     else {
         console.log("Incorrect entry not caught, exiting...")
         return
     }
+    let resultDiv = document.querySelector("#resultDiv");
     if (humanWin == true && computerWin == true){
-        console.log("Tie!")
+        resultDiv.textContent = "Tie!"
         result = "tie"
     }
     else if (humanWin == true){
@@ -63,6 +64,17 @@ function playGame(){
     let humanScore= 0;
     let computerScore = 0;
     let winner = ""
+    // buttons is a node list. It looks and acts much like an array.
+    const buttons = document.querySelectorAll("button");
+
+    // we use the .forEach method to iterate through each button
+    buttons.forEach((button) => {
+    // and for each one we add a 'click' listener
+    button.addEventListener("click", () => {
+        playRound(button.innerText.toLowerCase());
+    });
+    });
+    /*
     for (i=0; i<5; i++){
         winner = playRound(humanScore, computerScore)
         if (winner == "human") {
@@ -75,8 +87,23 @@ function playGame(){
     let whoWon = humanScore > computerScore ? "Human Wins!" : humanScore == computerScore ? "Tie" : "Computer Wins!"
     console.log(whoWon)
     console.log(humanScore)
-    console.log(computerScore)
+    console.log(computerScore)*/
 }
-
-
-playGame()
+/*
+const btnRock = document.querySelector("#btnRock");
+console.log(btnRock.innerText)
+btnRock.addEventListener("click", () => {
+  playRound("rock");
+});
+const btnScissors = document.querySelector("#btnScissors");
+btnRock.addEventListener("click", () => {
+  playRound("scissors");
+});
+const btnPaper = document.querySelector("#btnPaper");
+btnRock.addEventListener("click", () => {
+  playRound("rock");
+});
+*/
+window.onload = (event) =>{
+    playGame()
+}
