@@ -1,6 +1,6 @@
 function getComputerChoice(){
     let randN = Math.ceil(Math.random()*3);
-    let choice = randN == 1 ? "rock" : randN==2 ? "paper" : "scissors"
+    let choice = randN == 1 ? "Rock" : randN==2 ? "Paper" : "Scissors"
     console.log(choice)
     return choice
 }
@@ -15,27 +15,27 @@ function playRound(humanChoice){
     let computerChoice = getComputerChoice();
     let humanWin = true;
     let computerWin = true;
-    if (humanChoice == "rock"){
-        if (computerChoice == "scissors"){
+    if (humanChoice == "Rock"){
+        if (computerChoice == "Scissors"){
             computerWin = false
         }
-        else if (computerChoice == "paper"){
+        else if (computerChoice == "Paper"){
             humanWin = false
         }
     }
-    else if (humanChoice == "paper"){
-        if (computerChoice == "rock"){
+    else if (humanChoice == "Paper"){
+        if (computerChoice == "Rock"){
             computerWin = false
         }
-        else if (computerChoice == "scissors"){
+        else if (computerChoice == "Scissors"){
             humanWin = false
         }
     }
-    else if (humanChoice == "scissors"){
-        if (computerChoice == "paper"){
+    else if (humanChoice == "Scissors"){
+        if (computerChoice == "Paper"){
             computerWin = false
         }
-        else if (computerChoice == "rock"){
+        else if (computerChoice == "Rock"){
             humanWin = false
         }
     }
@@ -50,11 +50,11 @@ function playRound(humanChoice){
         result = "tie"
     }
     else if (humanWin == true){
-        console.log(`You won! ${humanChoice} beats ${computerChoice}.`)
+        resultDiv.textContent = `You won! ${humanChoice} beats ${computerChoice.toLowerCase()}.`
         result = "human"
     }
     else{
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
+        resultDiv.textContent = `You lose! ${computerChoice} beats ${humanChoice.toLowerCase()}.`
         result = "computer"
     }
     return result
@@ -71,7 +71,7 @@ function playGame(){
     buttons.forEach((button) => {
     // and for each one we add a 'click' listener
     button.addEventListener("click", () => {
-        playRound(button.innerText.toLowerCase());
+        playRound(button.innerText);
     });
     });
     /*
